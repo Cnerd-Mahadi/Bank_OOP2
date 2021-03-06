@@ -15,6 +15,7 @@ namespace Bank_Assignment02
         private string address;
         private string accountType;
         static int next = 3300;
+        private int transactions = 0;
 
 
 
@@ -27,6 +28,10 @@ namespace Bank_Assignment02
         {
             get { return this.accountName; }
             set { this.accountName = value; }
+        }
+        public int Transactions
+        {
+            get { return this.transactions; }
         }
 
         public double Balance
@@ -53,6 +58,11 @@ namespace Bank_Assignment02
             next++;
         }
 
+        public void TransactionIncrement ()
+        {
+            this.transactions++;
+        }
+
         public int AccountNumber
         {
             get { return this.accountNumber; }
@@ -67,6 +77,7 @@ namespace Bank_Assignment02
             if (amount > 0)
             {
                 balance += amount;
+                TransactionIncrement();
             }
         }
 
@@ -76,12 +87,13 @@ namespace Bank_Assignment02
             {
                 balance -= amount;
                 receiver.Deposit(amount);
+                TransactionIncrement();
             }
         }
 
         virtual public void ShowAccountInformation() 
         {
-            Console.WriteLine("__Account Information__\nAccount Name - {0}\nAccount Number - {1}\nBalance - {2}\nAddress - {3}", AccountName, AccountNumber, Balance, Address);
+            Console.WriteLine("__Account Information__\nAccount Type - {0}\nAccount Name - {1}\nAccount Number - {2}\nBalance - {3}\nAddress - {4}\nDOB - {5}", AccountType, AccountName, AccountNumber, Balance, Address, DateOfBirth);
         }
 
 

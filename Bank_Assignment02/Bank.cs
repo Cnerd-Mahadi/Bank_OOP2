@@ -45,6 +45,11 @@ namespace Bank_Assignment02
             {
                 if (myBank[i].AccountNumber == accountNumber)
                 {
+                    while (myBank[i+1] != null && i < myBank.Length)
+                    {
+                        myBank[i] = myBank[i + 1];
+                        i++;
+                    }
                     myBank[i] = null;
                     Console.WriteLine("Account Deleted Successfully!");
                     flag = 1;
@@ -67,7 +72,6 @@ namespace Bank_Assignment02
                         if (myBank[i].AccountNumber == fromAccountNumber)
                         {
                             myBank[i].Deposit(amount);
-                            Console.WriteLine("Money Deposited To Account No. {0} || Amount : {1}", myBank[i].AccountNumber, amount);
                             break;
                         }
                     }
@@ -78,7 +82,6 @@ namespace Bank_Assignment02
                         if (myBank[i].AccountNumber == fromAccountNumber)
                         {
                             myBank[i].Withdraw(amount);
-                            //Console.WriteLine("Money Withdrawn From Account No. {0} || Amount : {1}", myBank[i].AccountNumber, amount);
                             break;
                         }
                     }
@@ -103,7 +106,6 @@ namespace Bank_Assignment02
                         if (myBank[i].AccountNumber == fromAccountNumber)
                         {
                             myBank[i].Transfer(amount, myBank[iReceiver]);
-                            Console.WriteLine("Money Transfered From Account No. {0} To Account No. {1} || Amount : {2}", myBank[i].AccountNumber, myBank[iReceiver].AccountNumber, amount);
                             break;
                         }
                     }
@@ -111,6 +113,29 @@ namespace Bank_Assignment02
 
                 default:
                     break;
+            }
+        }
+
+        public void ShowAllTransactions (int accountNumber)
+        {
+            for (int i = 0; i < myBank.Length; i++)
+            {
+                if (myBank[i].AccountNumber == accountNumber)
+                {
+                    Console.WriteLine("Total Transaction - {0} Current Balance - {1}", myBank[i].Transactions, myBank[i].Balance);
+                    break;
+                }
+
+            }
+        }
+
+        public void ShowAllAccount ()
+        {
+            Console.WriteLine("_All Accounts_\n");
+            for (int i = 0; myBank[i] != null; i++)
+            {
+                myBank[i].ShowAccountInformation();
+                Console.WriteLine();
             }
         }
 

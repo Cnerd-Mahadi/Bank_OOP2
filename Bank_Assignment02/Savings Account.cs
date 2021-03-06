@@ -11,7 +11,6 @@ namespace Bank_Assignment02
         
         public override void ShowAccountInformation()
         {
-            Console.WriteLine(AccountType);
             base.ShowAccountInformation();
         }
 
@@ -20,11 +19,11 @@ namespace Bank_Assignment02
             if (amount > 0 && amount <= Balance && (Balance - amount > 0))
             {
                 Balance -= amount;
-                Console.WriteLine("Money Withdrawn SAC");
+                TransactionIncrement();
             }
             else
             {
-                Console.WriteLine("Sorry The Amount Couldnt Be Withdrawn SAC");
+                Console.WriteLine("Sorry The Amount Couldnt Be Withdrawn..");
             }
         }
 

@@ -22,7 +22,7 @@ namespace Bank_Assignment02
                 switch (choice)
                 {
                     case 1:
-                        Console.WriteLine("What Kind Of Account Do You Want To Open?\n1.Savings\n2.Checking");
+                        Console.WriteLine("What Kind Of Account Do You Want To Open?\n1.Savings\n2.Checking\n3.Back");
                         int ac = Convert.ToInt32(Console.ReadLine());
                         if(ac == 1)
                         {
@@ -30,7 +30,6 @@ namespace Bank_Assignment02
                             Console.WriteLine("Enter Your Account Information To Create Account...");
                             Console.WriteLine("Account Holder Name :");
                             a1.AccountName = Console.ReadLine();
-                            Console.WriteLine("Account Type :");
                             a1.AccountType = "Savings Account";
                             Console.WriteLine("Balance :");
                             a1.Balance = Convert.ToInt32(Console.ReadLine());
@@ -46,7 +45,6 @@ namespace Bank_Assignment02
                             Console.WriteLine("Enter Your Account Information To Create Account...");
                             Console.WriteLine("Account Holder Name :");
                             a1.AccountName = Console.ReadLine();
-                            Console.WriteLine("Account Type :");
                             a1.AccountType = "Checking Account";
                             Console.WriteLine("Balance :");
                             a1.Balance = Convert.ToInt32(Console.ReadLine());
@@ -55,6 +53,10 @@ namespace Bank_Assignment02
                             Console.WriteLine("Date Of Birth :");
                             a1.DateOfBirth = Console.ReadLine();
                             b1.AddAccount(a1);
+                        }
+                        else
+                        {
+                            break;
                         }
                         break;
 
@@ -65,9 +67,9 @@ namespace Bank_Assignment02
                         break;
 
                     case 3:
-                        Console.WriteLine("Enter The Transaction Service:\n\t1.Deposit\n\t2.Withdraw\n\t3.Transfer");
+                        Console.WriteLine("Enter The Transaction Service:\n\t1.Deposit\n\t2.Withdraw\n\t3.Transfer\n4.Show All Transaction\n5.Back");
                         int c2 = Convert.ToInt32(Console.ReadLine());
-                        if (c2 == 1 || c2 == 2 || c2 == 3)
+                        if (c2 == 1 || c2 == 2 || c2 == 3 )
                         {
                             Console.WriteLine("Enter The Amount:");
                             double amount = Convert.ToDouble(Console.ReadLine());
@@ -75,10 +77,26 @@ namespace Bank_Assignment02
                             int senderAccountNumber = Convert.ToInt32(Console.ReadLine());
                             b1.Transaction(c2, senderAccountNumber, amount);
                         }
+
+                        else if (c2 == 4)
+                        {
+                            Console.WriteLine("Enter Account Number To See All Transactions Of That Account :");
+                            int accountNumber = Convert.ToInt32(Console.ReadLine());
+                            b1.ShowAllTransactions(accountNumber);
+                        }
+
+                        else if (c2 == 5)
+                        {
+                            break;
+                        }
                         else
                         {
                             Console.WriteLine("Please Input A Valid Choice...");
                         }
+                        break;
+
+                    case 4:
+                        b1.ShowAllAccount();
                         break;
               
                     case 5:
