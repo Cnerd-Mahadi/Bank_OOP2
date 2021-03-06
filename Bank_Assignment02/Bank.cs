@@ -27,6 +27,7 @@ namespace Bank_Assignment02
                     myBank[i] = account;
                     myBank[i].AutoAcoountNumberGenarator();
                     myBank[i].ShowAccountInformation();
+                    flag = 1;
                     break;
                 }
 
@@ -77,7 +78,7 @@ namespace Bank_Assignment02
                         if (myBank[i].AccountNumber == fromAccountNumber)
                         {
                             myBank[i].Withdraw(amount);
-                            Console.WriteLine("Money Withdrawn From Account No. {0} || Amount : {1}", myBank[i].AccountNumber, amount);
+                            //Console.WriteLine("Money Withdrawn From Account No. {0} || Amount : {1}", myBank[i].AccountNumber, amount);
                             break;
                         }
                     }

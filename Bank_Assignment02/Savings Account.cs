@@ -17,13 +17,14 @@ namespace Bank_Assignment02
 
         public override void Withdraw(double amount)
         {
-            if (amount > 0 && amount <= Balance && (Balance - amount == 0))
+            if (amount > 0 && amount <= Balance && (Balance - amount > 0))
             {
                 Balance -= amount;
+                Console.WriteLine("Money Withdrawn SAC");
             }
             else
             {
-                Console.WriteLine("Sorry The Amount Couldnt Be Withdrawn");
+                Console.WriteLine("Sorry The Amount Couldnt Be Withdrawn SAC");
             }
         }
 

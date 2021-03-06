@@ -17,18 +17,45 @@ namespace Bank_Assignment02
             while (value)
             {
                 Console.WriteLine("Please Enter The Service You Want_\n");
-                Console.WriteLine("\t1.Add Account\n\t2.Delete Account\n\t3.Transaction\n\t4.Show All Accounts\n\t5.Quit");
+                Console.WriteLine("\t1.Open Account\n\t2.Delete Account\n\t3.Transaction\n\t4.Show All Accounts\n\t5.Quit");
                 int choice = Convert.ToInt32(Console.ReadLine());
                 switch (choice)
                 {
                     case 1:
-                        Account a1 = new Account();
-                        Console.WriteLine("Enter Your Account Information To Create Account...");
-                        Console.WriteLine("Account Name :");
-                        a1.AccountName = Console.ReadLine();
-                        Console.WriteLine("Balance :");
-                        a1.Balance = Convert.ToInt32(Console.ReadLine());
-                        b1.AddAccount(a1);
+                        Console.WriteLine("What Kind Of Account Do You Want To Open?\n1.Savings\n2.Checking");
+                        int ac = Convert.ToInt32(Console.ReadLine());
+                        if(ac == 1)
+                        {
+                            Account a1 = new Savings_Account();
+                            Console.WriteLine("Enter Your Account Information To Create Account...");
+                            Console.WriteLine("Account Holder Name :");
+                            a1.AccountName = Console.ReadLine();
+                            Console.WriteLine("Account Type :");
+                            a1.AccountType = "Savings Account";
+                            Console.WriteLine("Balance :");
+                            a1.Balance = Convert.ToInt32(Console.ReadLine());
+                            Console.WriteLine("Address - House No, Road No, City, Country");
+                            a1.Address = Console.ReadLine();
+                            Console.WriteLine("Date Of Birth :");
+                            a1.DateOfBirth = Console.ReadLine();
+                            b1.AddAccount(a1);
+                        }
+                        else if (ac == 2)
+                        {
+                            Account a1 = new Checking_Account();
+                            Console.WriteLine("Enter Your Account Information To Create Account...");
+                            Console.WriteLine("Account Holder Name :");
+                            a1.AccountName = Console.ReadLine();
+                            Console.WriteLine("Account Type :");
+                            a1.AccountType = "Checking Account";
+                            Console.WriteLine("Balance :");
+                            a1.Balance = Convert.ToInt32(Console.ReadLine());
+                            Console.WriteLine("Address - House No, Road No, City, Country");
+                            a1.Address = Console.ReadLine();
+                            Console.WriteLine("Date Of Birth :");
+                            a1.DateOfBirth = Console.ReadLine();
+                            b1.AddAccount(a1);
+                        }
                         break;
 
                     case 2:

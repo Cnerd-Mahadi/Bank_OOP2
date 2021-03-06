@@ -20,6 +20,7 @@ namespace Bank_Assignment02
             if (amount > 0 && amount <= Balance)
             {
                 Balance -= amount;
+                Console.WriteLine("Money Withdrawn CHAC"); 
             }
         }
 

@@ -81,7 +81,7 @@ namespace Bank_Assignment02
 
         virtual public void ShowAccountInformation() 
         {
-            Console.WriteLine("__Account Information__\nAccount Name - {0}\nAccount Number - {1}\nBalance - {2}\n{3}", accountName, accountNumber, balance);
+            Console.WriteLine("__Account Information__\nAccount Name - {0}\nAccount Number - {1}\nBalance - {2}\nAddress - {3}", AccountName, AccountNumber, Balance, Address);
         }
 
 
