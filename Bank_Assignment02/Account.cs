@@ -6,16 +6,16 @@ using System.Threading.Tasks;
 
 namespace Bank_Assignment02
 {
-    class Account
+    abstract class Account
     {
-        private string dateOfBirth;
+        protected string dateOfBirth;
         private int accountNumber;
-        private string accountName;
-        private double balance;
-        private string address;
-        private string accountType;
-        static int next = 3300;
-        private int transactions = 0;
+        protected string accountName;
+        protected double balance;
+        protected string accountType;
+        private static int accountGenarateNumber = 3300;
+        protected int transactions = 0;
+        protected string address;
 
 
 
@@ -54,46 +54,48 @@ namespace Bank_Assignment02
 
         public void AutoAcoountNumberGenarator()
         {
-            this.accountNumber = next;
-            next++;
+            this.accountNumber = accountGenarateNumber;
+            accountGenarateNumber++;
         }
 
-        public void TransactionIncrement ()
-        {
-            this.transactions++;
-        }
 
         public int AccountNumber
         {
             get { return this.accountNumber; }
         }
+         
+        abstract public bool Withdraw(double amount);
 
-        virtual public void Withdraw(double amount)
+         public bool Deposit(double amount)
         {
-        }
-
-         public void Deposit(double amount)
-        {
+            bool flag = false;
             if (amount > 0)
             {
                 balance += amount;
-                TransactionIncrement();
+                transactions++;
+                flag = true;
             }
+            return flag;
         }
 
-         public void Transfer(double amount, Account receiver)
+         public bool Transfer(double amount, Account receiver)
         {
+            bool flag = false;
             if (amount > 0 && amount <= balance)
             {
                 balance -= amount;
                 receiver.Deposit(amount);
-                TransactionIncrement();
+                transactions++;
+                flag = true;
             }
+            return flag;
         }
 
-        virtual public void ShowAccountInformation() 
+        virtual public void ShowAccountInformation()
         {
-            Console.WriteLine("__Account Information__\nAccount Type - {0}\nAccount Name - {1}\nAccount Number - {2}\nBalance - {3}\nAddress - {4}\nDOB - {5}", AccountType, AccountName, AccountNumber, Balance, Address, DateOfBirth);
+            Console.WriteLine("__Account Information__\nAccount Type - {0}\nAccount Name - {1}\nAccount Number - {2}\nBalance - {3}\nAddress - {4}\nDate Of Birth - {5}"
+                ,this.accountType, this.accountName, this.accountNumber, this.balance, this.address, this.dateOfBirth);
+            Console.WriteLine();
         }
 
 

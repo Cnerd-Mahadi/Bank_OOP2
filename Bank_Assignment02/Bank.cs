@@ -17,22 +17,39 @@ namespace Bank_Assignment02
             set { this.bankName = value; }
         }
 
-        public void AddAccount(Account account)
+        public int SearchAccount (int accountNumber)
         {
-            int flag = 0;
+            int value = 0;
+            for (int i = 0; i < myBank.Length; i++)
+            {
+                if (myBank[i].AccountNumber == accountNumber)
+                {
+                    value = i;
+                    break;
+                }
+            }
+
+            return value;
+        }
+
+        public void InsertAccount(Account account)
+        {
+            bool flag = false;
             for (int i = 0; i < myBank.Length; i++)
             {
                 if (myBank[i] == null)
                 {
                     myBank[i] = account;
                     myBank[i].AutoAcoountNumberGenarator();
+                    Console.WriteLine();
                     myBank[i].ShowAccountInformation();
-                    flag = 1;
+                    Console.WriteLine();
+                    flag = true;
                     break;
                 }
 
             }
-            if (flag == 0)
+            if (!flag)
             {
                 Console.WriteLine("Sorry Account Couldnt Be Created!");
             }
@@ -40,23 +57,23 @@ namespace Bank_Assignment02
 
         public void DeleteAccount(int accountNumber)
         {
-            int flag = 0;
+            bool flag = false;
             for (int i = 0; myBank[i] != null; i++)
             {
                 if (myBank[i].AccountNumber == accountNumber)
                 {
-                    while (myBank[i+1] != null && i < myBank.Length)
+                    while (myBank[i+1] != null && i < myBank.Length - 1)
                     {
                         myBank[i] = myBank[i + 1];
                         i++;
                     }
                     myBank[i] = null;
                     Console.WriteLine("Account Deleted Successfully!");
-                    flag = 1;
+                    flag = true;
                     break;
                 }
             }
-            if (flag == 0)
+            if (!flag)
             {
                 Console.WriteLine("Sorry Account Couldnt Be Deleted!");
             }
@@ -67,66 +84,49 @@ namespace Bank_Assignment02
             {
                 case 1:
 
-                    for (int i = 0; i < myBank.Length; i++)
+                    if(myBank[SearchAccount(fromAccountNumber)].Deposit(amount))
                     {
-                        if (myBank[i].AccountNumber == fromAccountNumber)
-                        {
-                            myBank[i].Deposit(amount);
-                            break;
-                        }
+                        Console.WriteLine("Money Successfully Deposited In Account Number - {0} || Balance - {1}", fromAccountNumber, myBank[SearchAccount(fromAccountNumber)].Balance);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Transaction Was Not Successful!");
                     }
                     break;
                 case 2:
-                    for (int i = 0; i < myBank.Length; i++)
+                    if (myBank[SearchAccount(fromAccountNumber)].Withdraw(amount))
                     {
-                        if (myBank[i].AccountNumber == fromAccountNumber)
-                        {
-                            myBank[i].Withdraw(amount);
-                            break;
-                        }
+                        Console.WriteLine("Money Successfully Withdrawn From Account Number - {0} || Balance - {1}", fromAccountNumber, myBank[SearchAccount(fromAccountNumber)].Balance);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Transaction Was Not Successful!");
                     }
                     break;
                 case 3:
 
                     Console.WriteLine("Enter Your Receiver Account Number :");
                     int receiverAccountNumber = Convert.ToInt32(Console.ReadLine());
-                    int iReceiver = 0;
-                    for (int i = 0; i < myBank.Length; i++)
+                    int iReceiver = SearchAccount(receiverAccountNumber);
+                    if (myBank[SearchAccount(fromAccountNumber)].Transfer(amount, myBank[iReceiver]))
                     {
-                        if (myBank[i].AccountNumber == receiverAccountNumber)
-                        {
-                            iReceiver = i;
-                            break;
-                        }
-
+                        Console.WriteLine("Money Successfully Transfered From Account Number - {0} To Account Number - {1} || Balance - {2}", fromAccountNumber, receiverAccountNumber, myBank[SearchAccount(fromAccountNumber)].Balance);
                     }
-
-                    for (int i = 0; i < myBank.Length; i++)
+                    else
                     {
-                        if (myBank[i].AccountNumber == fromAccountNumber)
-                        {
-                            myBank[i].Transfer(amount, myBank[iReceiver]);
-                            break;
-                        }
+                        Console.WriteLine("Transaction Was Not Successful!");
                     }
                     break;
 
                 default:
+                    Console.WriteLine("Please Input A Valid Choice...");
                     break;
             }
         }
 
         public void ShowAllTransactions (int accountNumber)
         {
-            for (int i = 0; i < myBank.Length; i++)
-            {
-                if (myBank[i].AccountNumber == accountNumber)
-                {
-                    Console.WriteLine("Total Transaction - {0} Current Balance - {1}", myBank[i].Transactions, myBank[i].Balance);
-                    break;
-                }
-
-            }
+            Console.WriteLine("Account No- {0} || Total Transaction - {1} Current Balance - {2}", accountNumber, myBank[SearchAccount(accountNumber)].Transactions, myBank[SearchAccount(accountNumber)].Balance);
         }
 
         public void ShowAllAccount ()

@@ -14,17 +14,17 @@ namespace Bank_Assignment02
             base.ShowAccountInformation();
         }
 
-        public override void Withdraw(double amount)
+        public override bool Withdraw(double amount)
         {
-            if (amount > 0 && amount <= Balance && (Balance - amount > 0))
+            bool flag = false;
+            if (amount > 0 && amount <= balance && (balance - amount > 0))
             {
-                Balance -= amount;
-                TransactionIncrement();
+                balance -= amount;
+                transactions++;
+                flag = true;
             }
-            else
-            {
-                Console.WriteLine("Sorry The Amount Couldnt Be Withdrawn..");
-            }
+            return flag;
+            
         }
 
     }

@@ -12,22 +12,22 @@ namespace Bank_Assignment02
         {
             Bank b1 = new Bank();
             b1.BankName = "STAY HUMBLE";
-            Console.WriteLine("________________________WELCOME TO {0} BANK________________________________\n", b1.BankName);
+            Console.WriteLine("\n\t\t\t\t\t|| WELCOME TO {0} BANK ||\t\t\n", b1.BankName);
             bool value = true;
             while (value)
             {
                 Console.WriteLine("Please Enter The Service You Want_\n");
-                Console.WriteLine("\t1.Open Account\n\t2.Delete Account\n\t3.Transaction\n\t4.Show All Accounts\n\t5.Quit");
+                Console.WriteLine("\t1.Open Account\n\t2.Delete Account\n\t3.Transaction\n\t4.Show All Accounts\n\t5.Quit\n");
                 int choice = Convert.ToInt32(Console.ReadLine());
                 switch (choice)
                 {
                     case 1:
-                        Console.WriteLine("What Kind Of Account Do You Want To Open?\n1.Savings\n2.Checking\n3.Back");
+                        Console.WriteLine("\nWhat Kind Of Account Do You Want To Open?\n\t1.Savings\n\t2.Checking\n\t3.Back\n");
                         int ac = Convert.ToInt32(Console.ReadLine());
                         if(ac == 1)
                         {
                             Account a1 = new Savings_Account();
-                            Console.WriteLine("Enter Your Account Information To Create Account...");
+                            Console.WriteLine("\nEnter Your Account Information To Create Account...");
                             Console.WriteLine("Account Holder Name :");
                             a1.AccountName = Console.ReadLine();
                             a1.AccountType = "Savings Account";
@@ -37,12 +37,12 @@ namespace Bank_Assignment02
                             a1.Address = Console.ReadLine();
                             Console.WriteLine("Date Of Birth :");
                             a1.DateOfBirth = Console.ReadLine();
-                            b1.AddAccount(a1);
+                            b1.InsertAccount(a1);
                         }
                         else if (ac == 2)
                         {
                             Account a1 = new Checking_Account();
-                            Console.WriteLine("Enter Your Account Information To Create Account...");
+                            Console.WriteLine("\nEnter Your Account Information To Create Account...");
                             Console.WriteLine("Account Holder Name :");
                             a1.AccountName = Console.ReadLine();
                             a1.AccountType = "Checking Account";
@@ -52,7 +52,7 @@ namespace Bank_Assignment02
                             a1.Address = Console.ReadLine();
                             Console.WriteLine("Date Of Birth :");
                             a1.DateOfBirth = Console.ReadLine();
-                            b1.AddAccount(a1);
+                            b1.InsertAccount(a1);
                         }
                         else
                         {
@@ -61,13 +61,13 @@ namespace Bank_Assignment02
                         break;
 
                     case 2:
-                        Console.WriteLine("Enter Account Number To Delete :");
+                        Console.WriteLine("\nEnter Account Number To Delete :");
                         int deleteAccountNumber = Convert.ToInt32(Console.ReadLine());
                         b1.DeleteAccount(deleteAccountNumber);
                         break;
 
                     case 3:
-                        Console.WriteLine("Enter The Transaction Service:\n\t1.Deposit\n\t2.Withdraw\n\t3.Transfer\n4.Show All Transaction\n5.Back");
+                        Console.WriteLine("\nEnter The Transaction Service:\n\t1.Deposit\n\t2.Withdraw\n\t3.Transfer\n\t4.Show All Transaction\n\t5.Back");
                         int c2 = Convert.ToInt32(Console.ReadLine());
                         if (c2 == 1 || c2 == 2 || c2 == 3 )
                         {
@@ -96,6 +96,7 @@ namespace Bank_Assignment02
                         break;
 
                     case 4:
+                        Console.WriteLine();
                         b1.ShowAllAccount();
                         break;
               
