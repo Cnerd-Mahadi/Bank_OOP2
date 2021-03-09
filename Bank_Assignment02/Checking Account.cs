@@ -26,5 +26,18 @@ namespace Bank_Assignment02
             return flag;
         }
 
+        public override bool Transfer(double amount, Account receiver)
+        {
+            bool flag = false;
+            if (amount > 0 && amount <= balance)
+            {
+                balance -= amount;
+                receiver.Deposit(amount);
+                transactions++;
+                flag = true;
+            }
+            return flag;
+        }
+
     }
 }

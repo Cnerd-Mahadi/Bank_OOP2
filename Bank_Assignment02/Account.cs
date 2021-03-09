@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Bank_Assignment02
 {
@@ -13,7 +9,7 @@ namespace Bank_Assignment02
         protected string accountName;
         protected double balance;
         protected string accountType;
-        private static int accountGenarateNumber = 3300;
+        private static int accountGenerateNumber = 3300;
         protected int transactions = 0;
         protected string address;
 
@@ -52,10 +48,10 @@ namespace Bank_Assignment02
             set { this.accountType = value; }
         }
 
-        public void AutoAcoountNumberGenarator()
+        public void GenerateAccountNumber()
         {
-            this.accountNumber = accountGenarateNumber;
-            accountGenarateNumber++;
+            this.accountNumber = accountGenerateNumber;
+            accountGenerateNumber++;
         }
 
 
@@ -78,18 +74,7 @@ namespace Bank_Assignment02
             return flag;
         }
 
-         public bool Transfer(double amount, Account receiver)
-        {
-            bool flag = false;
-            if (amount > 0 && amount <= balance)
-            {
-                balance -= amount;
-                receiver.Deposit(amount);
-                transactions++;
-                flag = true;
-            }
-            return flag;
-        }
+        abstract public bool Transfer(double amount, Account receiver);
 
         virtual public void ShowAccountInformation()
         {

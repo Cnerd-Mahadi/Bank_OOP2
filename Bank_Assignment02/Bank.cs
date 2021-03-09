@@ -40,7 +40,7 @@ namespace Bank_Assignment02
                 if (myBank[i] == null)
                 {
                     myBank[i] = account;
-                    myBank[i].AutoAcoountNumberGenarator();
+                    myBank[i].GenerateAccountNumber();
                     Console.WriteLine();
                     myBank[i].ShowAccountInformation();
                     Console.WriteLine();
